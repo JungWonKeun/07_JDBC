@@ -81,7 +81,7 @@ public class UserView {
 			} catch (Exception e) {
 				// 발생되는 예외를 모두 해당 catch 구문으로 모아서 처리
 				e.printStackTrace();
-			}
+			} 
 			
 		}while(input != 0);
 		
