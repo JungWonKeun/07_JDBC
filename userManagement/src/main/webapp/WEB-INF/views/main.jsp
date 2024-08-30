@@ -58,14 +58,9 @@
       --%>
       <li> <a href="/selectAll">사용자 목록 조회</a> </li>
     </ul>
+
   </c:if>
 
-  <c:if test="${!empty sessionScope.message}">
-    <script>
-      alert("${sessionScope.message}");
-    </script>
-    <c:remove var="message" scope="session" />
-  </c:if>
 
 
 

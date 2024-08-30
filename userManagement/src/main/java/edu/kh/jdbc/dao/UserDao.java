@@ -1,6 +1,7 @@
 package edu.kh.jdbc.dao;
 
 import java.sql.Connection;
+import java.util.List;
 
 import edu.kh.jdbc.dto.User;
 
@@ -30,5 +31,36 @@ public interface UserDao {
 	 * @throws Exception
 	 */
 	User login(Connection conn, String userId, String userPw) throws Exception;
+
+	/** 사용자 목록 조회
+	 * @param conn
+	 * @return userList
+	 * @throws Exception
+	 */
+	List<User> selectAll(Connection conn) throws Exception;
+
+	
+	/** 검색어가 아이디에 포함된 사용자 조회
+	 * @param conn
+	 * @param searchId
+	 * @return userList
+	 * @throws Exception
+	 */
+	List<User> search(Connection conn, String searchId) throws Exception;
+
+	
+	/** userNo가 일치하는 사용자 조회
+	 * @param conn
+	 * @param userNo
+	 * @return
+	 * @throws Exception
+	 */
+	User selectUser(Connection conn, String userNo) throws Exception;
+	
+	
+	
+	
+	
+	
 
 }

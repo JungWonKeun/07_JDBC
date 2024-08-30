@@ -4,6 +4,7 @@ package edu.kh.jdbc.service;
 import static edu.kh.jdbc.common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.List;
 
 import edu.kh.jdbc.dao.UserDao;
 import edu.kh.jdbc.dao.UserDaoImpl;
@@ -25,13 +26,13 @@ public class UserServiceImpl implements UserService{
 		int result = dao.insertUser(conn, user);
 		
 		// 3. DML 수행 -> 트랜잭션 처리
-		if(result > 0) commit(conn);
-		else		   rollback(conn);
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
 		
 		// 4. 사용 완료된 Connection 반환
 		close(conn);
 		
-		// 결과 반환
+		// 5. 결과 반환
 		return result;
 		
 	}
@@ -58,11 +59,49 @@ public class UserServiceImpl implements UserService{
 		Connection conn = getConnection();
 		
 		// DAO 메서드 호출 후 결과 반환 받기
-		User loginUser = dao.login(conn,userId, userPw);
+		User loginUser = dao.login(conn, userId, userPw);
 		
 		close(conn);
 		
 		return loginUser;
 	}
 	
+	
+	@Override
+	public List<User> selectAll() throws Exception {
+		
+		Connection conn = getConnection();
+		
+		List<User> userList = dao.selectAll(conn);
+		
+		close(conn);
+		
+		return userList;
+	}
+	
+	
+	@Override
+	public List<User> search(String searchId) throws Exception {
+		
+		// 커넥션 생성
+		Connection conn = getConnection();
+		
+		// 데이터 가공(없으면 패스)
+		searchId = '%' + searchId + '%'; // %검색어%  형태로 가공
+		
+		// DAO 호출 후 결과 반환 받기
+		List<User> userList = dao.search(conn, searchId);
+		
+		close(conn);
+		
+		return userList;
+	}
+	
+	@Override
+	public User selectUesr(String userNo) throws Exception {
+		Connection conn = getConnection();
+		User user = dao.selectUser(conn, userNo);
+		close(conn);
+		return user;
+	}
 }
