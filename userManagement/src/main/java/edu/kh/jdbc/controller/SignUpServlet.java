@@ -13,12 +13,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/signUp")
-public class SignUpServlet extends HttpServlet{
-	
+public class SignUpServlet extends HttpServlet {
+
 	// 사용자 등록 페이지로 전환
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		// 요청 위임
 		String path = "/WEB-INF/views/signUp.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
@@ -36,7 +36,7 @@ public class SignUpServlet extends HttpServlet{
 		String userName = req.getParameter("userName");
 		
 		System.out.println(userId);
-		System.out.println(userPw);
+		System.out.println(userPw); 
 		System.out.println(userName);
 		
 		try {
@@ -55,12 +55,12 @@ public class SignUpServlet extends HttpServlet{
 			// 결과에 따라 응답 방법 처리
 			String message = null;
 			
-			if(result > 0) message = userId + "사용자 등록 성공";
-			else		   message = "등록 실패";
+			if(result > 0)	message = userId + " 사용자 등록 성공";
+			else			message = "등록 실패";
 			
 			// page, request, session, application 중
 			// session을 이용해서 message 값 전달
-			HttpSession session = req.getSession();
+			HttpSession session = req.getSession(); 
 			session.setAttribute("message", message);
 			
 			// 메인 페이지로 리다이렉트(재요청)
@@ -68,10 +68,18 @@ public class SignUpServlet extends HttpServlet{
 			
 			
 			
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
+	
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

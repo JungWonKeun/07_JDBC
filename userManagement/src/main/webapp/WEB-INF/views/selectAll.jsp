@@ -67,5 +67,16 @@
     </tbody>
   </table>
 
+
+
+  <%-- session에 message가 존재하는 경우 --%>
+  <c:if test="${!empty sessionScope.message}">
+    <script>
+      alert("${sessionScope.message}");
+    </script>
+
+    <%-- session에 존재하는 message 제거 --%>
+    <c:remove var="message" scope="session" />
+  </c:if>
 </body>
 </html>

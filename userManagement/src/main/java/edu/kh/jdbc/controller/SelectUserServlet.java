@@ -24,10 +24,9 @@ public class SelectUserServlet extends HttpServlet{
 			
 			UserService service = new UserServiceImpl();
 			
-			User user = service.selectUser(userNo);
+			User user = service.selectUesr(userNo);
 			
-			req.setAttribute("abc", user);
-			
+			req.setAttribute("resultUser", user);
 			
 			String path = "/WEB-INF/views/selectUser.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);

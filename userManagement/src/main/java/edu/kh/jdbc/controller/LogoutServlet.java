@@ -20,6 +20,6 @@ public class LogoutServlet extends HttpServlet{
 		// 메인페이지(/) 리다이렉트
 		resp.sendRedirect("/");
 	
-		
+	
 	}
 }

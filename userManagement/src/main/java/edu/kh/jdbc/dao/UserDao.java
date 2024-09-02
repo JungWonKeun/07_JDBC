@@ -56,6 +56,23 @@ public interface UserDao {
 	 * @throws Exception
 	 */
 	User selectUser(Connection conn, String userNo) throws Exception;
+
+	
+	/** 사용자 삭제
+	 * @param conn
+	 * @param userNo
+	 * @return result
+	 * @throws Exception
+	 */
+	int deleteUser(Connection conn, int userNo) throws Exception;
+
+	/** 사용자 정보 수정
+	 * @param conn
+	 * @param user
+	 * @return result
+	 * @throws Exception
+	 */
+	int updateUser(Connection conn, User user) throws Exception;
 	
 	
 	

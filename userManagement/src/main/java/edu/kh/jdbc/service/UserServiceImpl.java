@@ -98,10 +98,42 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public User selectUesr(String userNo) throws Exception {
+	public User selectUser(String userNo) throws Exception {
 		Connection conn = getConnection();
 		User user = dao.selectUser(conn, userNo);
 		close(conn);
 		return user;
+	}
+	
+	
+	@Override
+	public int deleteUser(int userNo) throws Exception {
+		Connection conn = getConnection();
+		
+		int result = dao.deleteUser(conn, userNo);
+		
+		// 트랜잭션 제어 처리 (dao에서 DML 수행했으니까!!!)
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+
+		close(conn);
+		
+		return result;
+	}
+	
+	
+	@Override
+	public int updateUser(User user) throws Exception {
+		Connection conn = getConnection();
+		
+		int result = dao.updateUser(conn, user);
+		
+		// 트랜잭션 제어 처리 (dao에서 DML 수행했으니까!!!)
+		if(result > 0)	commit(conn);
+		else			rollback(conn);
+
+		close(conn);
+		
+		return result;
 	}
 }

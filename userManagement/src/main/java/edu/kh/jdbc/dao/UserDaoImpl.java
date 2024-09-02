@@ -244,11 +244,60 @@ public class UserDaoImpl implements UserDao{
 		}finally {
 			close(rs);
 			close(pstmt);
-			
 		}
-		
 		
 		return user;
 	}
+	
+	
+	@Override
+	public int deleteUser(Connection conn, int userNo) throws Exception {
+		
+		// 결과 저장용 변수
+		int result = 0; // delete 결과 행 개수 저장
+		
+		try {
+			String sql = prop.getProperty("deleteUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			// DML은 executeUpdate() 호출
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	@Override
+	public int updateUser(Connection conn, User user) throws Exception {
+		
+		// 결과 저장용 변수
+		int result = 0; // delete 결과 행 개수 저장
+		
+		try {
+			String sql = prop.getProperty("updateUser");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getUserPw());
+			pstmt.setString(2, user.getUserName());
+			pstmt.setInt(3, user.getUserNo());
+			
+			// DML은 executeUpdate() 호출
+			result = pstmt.executeUpdate();
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 	
 }

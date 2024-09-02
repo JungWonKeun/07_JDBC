@@ -27,10 +27,6 @@ userId.addEventListener("input", e => {
       check.classList.remove("green"); // green 클래스 제거
       check.innerText = "이미 사용중인 아이디 입니다";
     }
-
-
-
-
   });
 
 });

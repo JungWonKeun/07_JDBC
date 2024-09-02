@@ -18,8 +18,6 @@ public class SelectAllServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		
-		
 		try {
 			UserService service = new UserServiceImpl();
 			

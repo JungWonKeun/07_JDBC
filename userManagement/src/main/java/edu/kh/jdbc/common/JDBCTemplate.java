@@ -49,18 +49,6 @@ public class JDBCTemplate {
 			}
 			
 			
-			/* DB 연결을 위한 정보들을 별도 파일에 작성하여
-			 * 읽어오는 형식으로 코드를 변경!!!
-			 * 
-			 * 이유 1 : Github에 코드 올리면 해킹하세요~ 뜻이라
-			 * 			보안적인 측면에서 코드를 직접 보지 못하게함
-			 * 
-			 * 이유 2 : 혹시라도 연결하는 DB 정보가 변경될 경우
-			 * 			Java 코드가 아닌
-			 * 			읽어오는 파일의 내용을 수정하면 되기 때문에
-			 * 			Java 코드 수정 x -> 추가 컴파일 필요 x
-			 * 			--> 개발 시간 단축!!
-			 */
 			
 			/* driver.xml 파일 내용 읽어오기 */
 			
@@ -74,13 +62,14 @@ public class JDBCTemplate {
 			//    driver.xml 파일 내용을 읽어와 prop 에 저장
 			
 			String filePath = 
-					JDBCTemplate.class
-					.getResource("/edu/kh/jdbc/sql/driver.xml").getPath();
+				JDBCTemplate.class
+				.getResource("/edu/kh/jdbc/sql/driver.xml").getPath();
 			
 			// -> 빌드(코드를 실행 가능한 상태로 만드는 것) 시
-			//	  컴파일된 JDBCTemplate.class 파일의 위치에서
-			//	  /edu/kh/jdbc/sql/driver.xml 파일을 찾아 
-			//    실제 경로를 얻어오기
+			// 컴파일된 JDBCTemplate.class 파일의 위치에서
+			// /edu/kh/jdbc/sql/driver.xml 파일을 찾아
+			// 실제 경로를 얻어오기
+			
 										
 			prop.loadFromXML(new FileInputStream(filePath));
 			
@@ -186,6 +175,5 @@ public class JDBCTemplate {
 	
 	
 }
-
 
 

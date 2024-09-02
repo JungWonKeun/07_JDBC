@@ -14,10 +14,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet{
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+	
 		try {
 			// 파라미터 얻어오기
 			String searchId = req.getParameter("searchId");
@@ -27,11 +27,11 @@ public class SearchServlet extends HttpServlet{
 			UserService service = new UserServiceImpl();
 			
 			List<User> userList = service.search(searchId);
-			
+
 			// request scope에 userList 세팅
-			req.setAttribute("userList",  userList);
+			req.setAttribute("userList", userList);
 			
-			// forward할 jsp 경로
+			// forward할 jsp 경로 
 			String path = "/WEB-INF/views/selectAll.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);
 			
@@ -39,6 +39,7 @@ public class SearchServlet extends HttpServlet{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 }
